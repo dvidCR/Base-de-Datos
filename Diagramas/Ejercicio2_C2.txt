@@ -1,0 +1,25 @@
+En la entidad de PRESIDENTES tenemos los atributos NOMBRE, APELLIDO, DNI(El cual es una clave fuerte), FECHA DE NACIMIENTO, 
+AÑO DE PRESIDENTE y EQUIPO DEL QUE ES PRESIDENTE.
+
+A los presidentes les pertenece el equipo el cual tienen una relacio de un presidente preside un equipo al igual que un 
+equipo tiene varios presidentes, que son los datos de todos los presidentes que tuvo el club y el actual.
+
+En la entidad EQUIPO tenemos los atributos NOMBRE EQUIPO, NOMBRE ESTADIO, AFORO, AÑO DE FUNDACION DEL EQUIPO, 
+CIUDAD y CODIGO(El cual tiene la clave fuerte).
+
+En el EQUIPO juegan JUGADORES los cuales tienen una relación en la cual un EQUIPO puede tener varios JUGADOR y varios
+JUGADOR pertenecen a un EQUIPO, son los datos de este equipo (no de los jugadores).
+
+En la entidad JUGADOR tenemos los atributos NOMBRE, FECHA DE NACIMIENTO, POSICION, CODIGO(El cual es la clave fuerte), 
+que son los datos de todos los jugadores que hay en el equipo.
+
+El EQUIPO tiene que jugar PARTIDOS los cuales tienen una relación de un equipo juega varios partidos en el estadio local 
+y en varios partidos puede haber un equipo visitante.
+
+En la entidad PARTIDOS tenemos los atributos FECHA DEL PARTIDO, GOLES EN CASA, GOLES DE VISITA, CODIGO(El cual es la clave
+fuerte), que son los datos de cada partido echo por el equipo.
+
+Los PARTIDOS tiene una relación con GOLES de en un PARTIDO se pueden anotar varios goles.
+
+En la entidad GOLES tenemos los atributos DESCRIPCION_DEL_GOL y MOMENTO_DEL_GOL(El cual tiene la clave fuerte), que son los
+datos de todos los goles anotados en el partido.
