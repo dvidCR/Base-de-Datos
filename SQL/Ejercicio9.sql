@@ -3,64 +3,100 @@ CREATE DATABASE Ejercicio9;
 
 USE Ejercicio9;
 
-CREATE TABLE Escalas(
-	ID INT AUTO_INCREMENT NOT NULL,
-    Salida_sin_Bajas INT(200) NOT NULL,
-    Salida_sin_Altas INT(200) NOT NULL,
-    Llegada_sin_Bajas INT(200) NOT NULL,
-    Llegada_sin_Altas INT(200) NOT NULL,
-    PRIMARY KEY(ID)
+CREATE TABLE Aviones(
+	id INT AUTO_INCREMENT,
+    modelo VARCHAR(100) NOT NULL,
+    capacidad INT,
+    PRIMARY KEY(id)
 );
 
-CREATE TABLE Registro_Vuelo(
-	ID INT AUTO_INCREMENT NOT NULL,
-    Plazas_Vacias INT(200),
-    Modelo VARCHAR(50) NOT NULL,
-    Fecha DATE NOT NULL,
-    FK_ID_Escalas INT NOT NULL,
-    PRIMARY KEY(ID),
-    FOREIGN KEY(FK_ID_Escalas) REFERENCES Escalas(ID)
+INSERT INTO Aviones VALUES(NULL,"Boeing747", NULL);
+INSERT INTO Aviones VALUES(NULL,"Boeing747", 568);
+SELECT * FROM Aviones;
+UPDATE Aviones SET modelo = "Boeing737" WHERE id = 2;
+
+CREATE TABLE Aeropuertos(
+	id INT AUTO_INCREMENT,
+    codigo VARCHAR(4),
+    nombre VARCHAR(100),
+    ciudad VARCHAR(50),
+    pais VARCHAR(50),
+    PRIMARY KEY(id)
 );
 
-CREATE TABLE Pistas(
-	ID INT AUTO_INCREMENT NOT NULL,
-    Despegue INT(100) NOT NULL,
-    Aterrizaje INT(100) NOT NULL,
-    FK_ID_Registro_Vuelo INT NOT NULL,
-    PRIMARY KEY(ID),
-    FOREIGN KEY(FK_ID_Registro_Vuelo) REFERENCES Registro_Vuelo(ID)
+INSERT INTO Aeropuertos VALUES(NULL, NULL, NULL, NULL, NULL);
+INSERT INTO Aeropuertos VALUES(NULL, "MAD", "BARAJAS", "MADRID", "ESPAÑA");
+SELECT * FROM Aeropuertos;
+UPDATE Aeropuertos SET pais = "ENGLAND" WHERE id = 2;
+UPDATE Aeropuertos SET nombre = "LUTON" WHERE id = 2;
+UPDATE Aeropuertos SET ciudad = "LONDON" WHERE id = 2;
+UPDATE Aeropuertos SET codigo = "LON" WHERE id = 2;
+
+
+CREATE TABLE Aviones_Aeropuertos(
+	id INT AUTO_INCREMENT,
+    fk_id_avion INT NOT NULL,
+    fk_id_aeropuertos INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(fk_id_avion) REFERENCES Aviones(id) ON UPDATE CASCADE ON DELETE NO ACTION,
+    FOREIGN KEY(fk_id_aeropuertos) REFERENCES Aeropuertos(id) ON UPDATE CASCADE ON DELETE NO ACTION
 );
+
+INSERT INTO Aviones_Aeropuertos VALUES(NULL,2,2);
+SELECT * FROM Aviones_Aeropuertos;
+UPDATE Aviones_Aeropuertos SET fk_id_avion = 1 WHERE id = 1;
 
 CREATE TABLE Programa_Vuelo(
-	Num_Vuelo INT AUTO_INCREMENT NOT NULL,
-    Linea_Aerea VARCHAR(20) NOT NULL,
-    Tiempo VARCHAR(25),
-    FK_ID_Pistas INT NOT NULL,
-    PRIMARY KEY(Num_Vuelo),
-    FOREIGN KEY(FK_ID_Pistas) REFERENCES Pistas(ID)
+	id INT AUTO_INCREMENT,
+    num_vuelo VARCHAR(10) NOT NULL UNIQUE,
+    linea_aerea VARCHAR(100) NOT NULL,
+    dias_semana VARCHAR(14) NOT NULL,
+    es_escala BOOLEAN,
+    numero_vuelo_anterior VARCHAR(10),
+    PRIMARY KEY(id)
 );
 
-CREATE TABLE Aeropuerto(
-	ID INT AUTO_INCREMENT NOT NULL,
-    Nombre VARCHAR(50),
-    Ciudad VARCHAR(20),
-    Pais VARCHAR(20),
-    Codigo VARCHAR(10) NOT NULL,
-    PRIMARY KEY(ID)
+INSERT INTO Programa_Vuelo VALUES(NULL, "ah4561dd", "a14", "lunes,viernes",1,"a114gv");
+SELECT * FROM Programa_Vuelo;
+UPDATE Programa_Vuelo SET es_escala = 2 WHERE id = 1;
+
+CREATE TABLE Aeropuertos_Programa_Vuelo(
+	id INT AUTO_INCREMENT,
+    fk_id_aeropuerto_salida INT NOT NULL,
+    fk_id_aeropuerto_llegada INT NOT NULL,
+	fk_id_programa_vuelo INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(fk_id_aeropuerto_salida) REFERENCES Aeropuertos(id) ON UPDATE CASCADE ON DELETE NO ACTION,
+    FOREIGN KEY(fk_id_aeropuerto_llegada) REFERENCES Aeropuertos(id) ON UPDATE CASCADE ON DELETE NO ACTION,
+    FOREIGN KEY(fk_id_programa_vuelo) REFERENCES Programa_Vuelo(id) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
-CREATE TABLE Aeropuerto_Programa_Vuelo(
-	FK_ID_Aeropuerto INT NOT NULL,
-    FK_Num_Vuelo_Programa_Vuelo INT NOT NULL,
-    FOREIGN KEY(FK_ID_Aeropuerto) REFERENCES Aeropuerto(ID),
-    FOREIGN KEY(FK_Num_Vuelo_Programa_Vuelo) REFERENCES Programa_Vuelo(Num_Vuelo)
+INSERT INTO Aeropuertos_Programa_Vuelo VALUES(NULL, 1, 2, 1);
+SELECT * FROM Aeropuertos_Programa_Vuelo;
+UPDATE Aeropuertos_Programa_Vuelo SET fk_id_aeropuerto_salida = 2 WHERE id = 1;
+
+CREATE TABLE Vuelos(
+	id INT AUTO_INCREMENT,
+    modelo_avion VARCHAR(100) NOT NULL,
+    plazas_vacias INT,
+    fecha DATE NOT NULL,
+    fk_id_programa_vuelo INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(fk_id_programa_vuelo) REFERENCES Programa_Vuelo(id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
-CREATE TABLE Plazas(
-	ID INT AUTO_INCREMENT NOT NULL,
-    Modelo_Avion VARCHAR(20),
-    Num_Plazas INT(15),
-    FK_ID_Aeropuerto INT NOT NULL,
-    PRIMARY KEY(ID),
-    FOREIGN KEY(FK_ID_Aeropuerto) REFERENCES Aeropuerto(ID)
+INSERT INTO Vuelos VALUES(NULL, "awjfbafb2345", 15, 19981015,1);
+SELECT * FROM Vuelos;
+UPDATE Vuelos SET fecha = 20231015 WHERE id = 1;
+
+CREATE TABLE Escalas_Tecnicas(
+	id INT AUTO_INCREMENT,
+    motivo VARCHAR(200) NOT NULL,
+    fk_id_vuelo INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(fk_id_vuelo) REFERENCES Vuelos(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+INSERT INTO Escalas_Tecnicas VALUES(NULL, "awjfbafb2345", 1);
+SELECT * FROM Escalas_Tecnicas;
+UPDATE Escalas_Tecnicas SET motivo = "Ataque Terrorista con bomba" WHERE id = 1;
