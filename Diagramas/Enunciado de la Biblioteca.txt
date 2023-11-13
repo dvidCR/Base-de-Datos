@@ -1,0 +1,6 @@
+Tenemos una tabla de una biblioteca la cual esta dividia entre Autores: con autorID (clave primaria) y nombre, 
+Editoral: con editorialID (clave primaria) y nombre, Genero: con generoID (clave primaria) y nombre, Lbros:
+con libroID (clave primaria), titulo, stock, anio de publicacion, ISBN, fk_generoID_Genero, fk_autorID_Autores,
+fk_editorialID_Editorial con una relacion de N:1 junto a Genero, Prestamos: con prestamoID (clave primaria), fechaPrestamo,
+fechaDevolucion y fk_libroID_Libros con una relacion N:1 junto a LIbros, Personas: con personaID (clave primaria), 
+nombre, apellido1, apellido2, fk_libroID_Libros y fk_prestamosID_Prestamos con una relación N:1 junto a Prestamos.

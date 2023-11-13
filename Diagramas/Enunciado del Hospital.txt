@@ -1,0 +1,11 @@
+Tenemos un hospital el cual tiene muchas camas dividas entre las plantas y las zonas y tambien hay que guardar 
+la fecha del último cambio de sábanas.
+
+El hospital tiene pacientes de los cuales se sabe su dni, nombre, primer apellido y fecha de ingreso.
+
+Un paciente puede tener una cama y una cama para varios pacientes.
+
+El hospital también tiene personal médico de los cuales tenemos su dni, nombre, ambos apellidos, su especialidad y
+su turno.
+
+Un pacientente puede ser atendido por más de un médico y los médicos pueden atender a varios en un día.
