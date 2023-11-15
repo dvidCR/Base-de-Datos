@@ -82,10 +82,14 @@ INSERT INTO Pedidos (pedido_id, cliente_id, fecha_pedido) VALUES
 (2, 2, '2023-02-01');
 -- ... Agrega 8 registros más ...
 
-INSERT INTO Pedidos (pedido_id) VALUES
-(3),
-(4),
-(5);
+INSERT INTO Pedidos VALUES
+(3, 1, '2023-10-01'),
+(4, 2, '2023-10-01'),
+(5, 1, '2023-10-01');
+
+#Para probar el ON UPDATE de cliente_id en la tabla Pedidos
+
+UPDATE Clientes SET cliente_id = 258 WHERE cliente_id = 1;
 
 UPDATE Pedidos SET cliente_id = 3 WHERE pedido_id = 3;
 UPDATE Pedidos SET cliente_id = 4 WHERE pedido_id = 4;
