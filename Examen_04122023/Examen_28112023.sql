@@ -36,7 +36,7 @@ CREATE TABLE Vehiculo (
     marca VARCHAR(15) NOT NULL,
     modelo VARCHAR(30) NOT NULL,
     fk_id_persona INT NOT NULL,
-    FOREIGN KEY (fk_id_persona) REFERENCES Persona(id),
+    FOREIGN KEY (fk_id_persona) REFERENCES Persona(id) ON UPDATE CASCADE ON DELETE NO ACTION,
     PRIMARY KEY(id)
 );
 
