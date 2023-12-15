@@ -81,7 +81,7 @@ SELECT producto, cantidad FROM Pedido WHERE id_cliente IN(SELECT id_cliente FROM
 
 -- Ejercicio 12
 
-SELECT nombre, apellido FROM Cliente WHERE id_cliente IN(SELECT id_cliente, producto FROM Pedido WHERE producto);
+SELECT nombre, apellido FROM Cliente WHERE id_cliente IN(SELECT DISTINCT id_cliente, producto FROM Pedido WHERE cantidad >= 2);
 
 -- Ejercicio 13
 
@@ -101,7 +101,8 @@ SELECT producto, cantidad FROM Pedido WHERE id_cliente IN(SELECT id_cliente FROM
 
 -- Ejercicio 17
 
-SELECT id_cliente, nombre FROM Cliente WHERE id_cliente IN(SELECT id_cliente FROM Pedido WHERE producto = "Producto X" AND producto = "Producto Y");
+select * from Cliente where id_cliente in (select id_cliente from Pedido where producto = 'Producto Y') and 
+id_cliente in (select id_cliente from Pedido where producto = 'Producto X');
 
 -- Ejercicio 18
 
