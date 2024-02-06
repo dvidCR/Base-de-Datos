@@ -1,4 +1,3 @@
-
 [
     {
         "nombre": "Francisco Ramirez",
@@ -23,7 +22,6 @@
     ]
 
 console.log(JSON.parse('{"Emails": "isabel@thebridgeschool.es"}'))
-}
 
 
 
@@ -75,15 +73,17 @@ console.log(JSON.parse('{"Emails": "isabel@thebridgeschool.es"}'))
 
 console.log(JSON.parse('"localidade 8"').pais);
 
-var contL = 9;
-var continente = prompt("Que contienete es");
-var pais = prompt("Que pais va a ser");
-var capital = prompt("Cual es su capital");
+contL = 9;
+continente = prompt("Que contienete es");
+pais = prompt("Que pais va a ser");
+capital = prompt("Cual es su capital");
+
 "localidad" + contL {
     "Continente": continente,
     "País": pais,
     "Capital": capital
 }
+
 
 JSON.parse["localidad 4"] = "Población"
 
