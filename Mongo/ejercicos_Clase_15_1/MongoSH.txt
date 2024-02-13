@@ -1,0 +1,31 @@
+Crear la base de datos Colegio: 
+use Colegio
+
+Crear las colecciones: 
+db.createCollection("Profesores"),
+db.createCollection("Alumnos"),
+db.createCollection("Asignaturas"),
+db.createCollection("Instalaciones"),
+db.createCollection("Clases")
+
+Crear contenido de Profesores: 
+db.Profesores.insertOne({nombre: "Alfonso", asignatura: "Lengua", email: "alfonso@gmail.com"});
+db.Profesores.insertOne({nombre: "Mario", asignatura: "Matematicas", email: "mario@gmail.com"});
+db.Profesores.insertOne({nombre: "Toñi", asignatura: "Musica", email: "toñi@gmail.com"});
+
+Crear contenido de Alumnos:
+db.Alumnos.insertOne({nombre: "Maria", curso: "3º de Primaria", listaAsignaturas: {Asignatura1: "Lengua", Asignatura2: "Matematicas", Asignatura3: "Musica"}, edad: "8 años"});
+db.Alumnos.insertOne({nombre: "Paula", curso: "3º de Primaria", listaAsignaturas: {Asignatura1: "Lengua", Asignatura2: "Matematicas", Asignatura3: "Musica"}, edad: "8 años"});
+db.Alumnos.insertOne({nombre: "Dario", curso: "3º de Primaria", listaAsignaturas: {Asignatura1: "Lengua", Asignatura2: "Matematicas", Asignatura3: "Musica"}, edad: "19 años"});
+
+Crear contenido de Asignaturas:
+db.Asignaturas.insertOne({nombre: "Matematicas", curso: "3º Primaria"});
+db.Asignaturas.insertOne({nombre: "Lengua", curso: "3º Primaria"});
+db.Asignaturas.insertOne({nombre: "Musica", curso: "3º Primaria"});
+
+Crear contenido de Instalaciones:
+db.Profesores.insertOne({edificio: "Edificio A", planta: "Primera", listaClases: {Clase1: "1º de Primaria", Clase2: "2º de Primaria", Clase3: "3º de Primaria"}});
+db.Profesores.insertOne({edificio: "Edificio A", planta: "Segunda", listaClases: {Clase1: "4º de Primaria", Clase2: "5º de Primaria", Clase3: "6º de Primaria"}});
+db.Profesores.insertOne({edificio: "Gimnasio", planta: "Piscina", listaClases: {Clase1: "1º de Primaria", Clase2: "2º de Primaria", Clase3: "3º de Primaria", Clase4: "4º de Primaria", Clase5: "5º de Primaria", Clase6: "6º de Primaria"}});
+
+Crear contenido de Clases:

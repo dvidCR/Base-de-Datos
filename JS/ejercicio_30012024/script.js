@@ -1,4 +1,4 @@
-[
+/*[
     {
         "nombre": "Francisco Ramirez",
         "edad": 29,
@@ -92,31 +92,31 @@ JSON.parse["localidad 4"] = "Población"
     {
         "Nombre": "Gofres Belgas",
         "Precio": 5.95,
-        "Descripción": "Dos de nuestros gofres belgas con abundante sirope",
-        "Calorías": 650
+        "Descripcion": "Dos de nuestros gofres belgas con abundante sirope",
+        "Calorias": 650
     },
     {
         "Nombre": "Gofres Belgas con Fresas",
         "Precio": 7.95,
-        "Descripción": "Ligeros gofres belgas cubiertod de fresas y nata montada",
-        "Calorías": 900
+        "Descripcion": "Ligeros gofres belgas cubiertod de fresas y nata montada",
+        "Calorias": 900
     },
     {
         "Nombre": "Gofres Belgas con frutas del bosque",
         "Precio": 8.95,
-        "Descripción": "Ligeros gofres belgas cubiertos con frutas del bosque y nata montada",
-        "Calorías": 900
+        "Descripcion": "Ligeros gofres belgas cubiertos con frutas del bosque y nata montada",
+        "Calorias": 900
     },
     {
         "Nombre": "Tostada Francesa",
         "Precio": 4.50,
-        "Descripción": "Dos gruesas rebanadas de nuestro pan francés casero",
-        "Calorías": 600
+        "Descripcion": "Dos gruesas rebanadas de nuestro pan francés casero",
+        "Calorias": 600
     },
     {
         "Nombre": "Desayuno de la casa",
         "Precio": 6.95,
-        "Descripción": "Dos huevos, bacon o salchicha, tostada y patatas fritas",
-        "Calorías": 950
+        "Descripcion": "Dos huevos, bacon o salchicha, tostada y patatas fritas",
+        "Calorias": 950
     },
-]
+]*/
