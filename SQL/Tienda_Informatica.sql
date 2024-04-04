@@ -43,6 +43,11 @@ INSERT INTO producto VALUES(11, 'Impresora HP Laserjet Pro M26nw', 180, 3);
 -- 1. Devuelve una lista con el nombre del producto, precio y nombre de fabricante de todos los productos de
 -- la base de datos.
 
+SELECT *
+FROM producto, fabricante
+WHERE producto.id_fabricante = fabricante.id;
+
+
 SELECT a.nombre, a.precio, b.nombre 
 FROM producto a 
 INNER JOIN fabricante b 
