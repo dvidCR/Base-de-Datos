@@ -1,0 +1,5 @@
+tren(pk_id_tren, capacidad, matricula, fk_id_cochera, fk_num_linea)
+cochera(pk_id_cochera, capacidad_max, num_cochera)
+linea(pk_num_linea, color, destino)
+estacion(pk_id_estaciom, nombre, ciudad, calle)
+linea_estacion(pk_id, numero, fk_num_linea, fk_id_estacion)

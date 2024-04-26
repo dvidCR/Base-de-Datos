@@ -1,3 +1,5 @@
-Supongamos un sistema informatico en el que queremos tener infomarción de municipios, viviendas y personas.
-Cada persona solo puede habitar en una vivienda y en cambio puede ser propietaria de más de una vivienda.
-Nos interesa conocer a las personas que dependen del cabeza de la familia.
+municipio(pk_id_municipio, zona, nombre)
+vivienda(pk_id_vivienda, tamaño, dirección, codigo_postal, habitaciones, fk_id_municipio, fk_dni_persona)
+persona(pk_dni, nombre, apellidos, fk_cabeza_familia)
+cabeza_familia(pk_dni, cabeza_familia)
+propietario(pk_id, fk_id_vivienda, fk_dni_persona)
