@@ -1,0 +1,259 @@
+EJ1.Crear una base de datos llamada "empresa" 
+
+mongod> use empresa
+switched to db empresa
+
+EJ2.Crea la colección " empleados " con los campos: nombre, edad y cargo (5 registros).
+
+empresa> db.createCollection("empleados")
+{ ok: 1 }
+
+empresa> show collections
+empleados
+
+empresa> db.empleados.insert({nombre: "Laura", edad: 30, cargo: "Recursos Humanos"})
+
+empresa> db.empleados.insert({nombre: "Juan", edad: 45, cargo: "Desarrolador Web"})
+
+empresa> db.empleados.insert({nombre: "Marta", edad: 65, cargo: "Desarrolador Web"})
+
+empresa> db.empleados.insert({nombre: "Ricardo", edad: 69, cargo: "Desarrolador"})
+
+empresa> db.empleados.insert({nombre: "Pedro", edad: 57, cargo: "Desarrolador Web"})
+
+empresa> db.empleados.find()
+[
+  {
+    _id: ObjectId('664795b570031797e37383e1'),
+    nombre: 'Laura',
+    edad: 30,
+    cargo: 'Recursos Humanos'
+  },
+  {
+    _id: ObjectId('664795ff70031797e37383e3'),
+    nombre: 'Juan',
+    edad: 45,
+    cargo: 'Desarrolador Web'
+  },
+  {
+    _id: ObjectId('6647960370031797e37383e4'),
+    nombre: 'Marta',
+    edad: 65,
+    cargo: 'Desarrolador Web'
+  },
+  {
+    _id: ObjectId('6647960970031797e37383e5'),
+    nombre: 'Ricardo',
+    edad: 69,
+    cargo: 'Desarrolador'
+  },
+  {
+    _id: ObjectId('6647964e70031797e37383e6'),
+    nombre: 'Pedro',
+    edad: 57,
+    cargo: 'Desarrolador Web'
+  }
+]
+
+EJ3.Crea la colección " clientes " con los campos: nombre e industria (5 registros).
+
+empresa> db.createCollection("clientes")
+{ ok: 1 }
+
+empresa> show collections
+clientes
+empleados
+
+empresa> db.clientes.insert({nombre: "Izan", industria: "salud"})
+
+empresa> db.clientes.insert({nombre: "Carlos", industria: "informatica"})
+
+empresa> db.clientes.insert({nombre: "Antonio", industria: "carpinteria"})
+
+empresa> db.clientes.insert({nombre: "Gustavo", industria: "construccion"})
+
+empresa> db.clientes.insert({nombre: "Empresa A", industria: "teatro"})
+
+empresa> db.clientes.find()
+[
+  {
+    _id: ObjectId('664796c770031797e37383e7'),
+    nombre: 'Izan',
+    industria: 'salud'
+  },
+  {
+    _id: ObjectId('6647973d70031797e37383e8'),
+    nombre: 'Carlos',
+    industria: 'informatica'
+  },
+  {
+    _id: ObjectId('6647974170031797e37383e9'),
+    nombre: 'Antonio',
+    industria: 'carpinteria'
+  },
+  {
+    _id: ObjectId('6647975870031797e37383ea'),
+    nombre: 'Gustavo',
+    industria: 'construccion'
+  },
+  {
+    _id: ObjectId('6647976570031797e37383eb'),
+    nombre: 'Empresa A',
+    industria: 'teatro'
+  }
+]
+
+EJ4.Crea la colección " proyecto " con los campos: nombre, cliente y responsable (5 registros).
+
+empresa> db.createCollection("proyecto")
+{ ok: 1 }
+
+empresa> show collections
+clientes
+empleados
+proyecto
+
+empresa> db.proyecto.insert({nombre: "Y", cliente: "6647976570031797e37383eb", responsable: "6647964e70031797e37383e6"})
+
+empresa> db.proyecto.insert({nombre: "W", cliente: "6647975870031797e37383ea", responsable: "6647960970031797e37383e5"})
+
+empresa> db.proyecto.insert({nombre: "X", cliente: "6647974170031797e37383e9", responsable: "6647960370031797e37383e4"})
+
+empresa> db.proyecto.insert({nombre: "Z", cliente: "6647973d70031797e37383e8", responsable: "664795ff70031797e37383e3"})
+
+empresa> db.proyecto.insert({nombre: "H", cliente: "664796c770031797e37383e7", responsable: "664795b570031797e37383e1"})
+ 
+EJ5.¿Cuántos empleados hay en total?
+
+empresa> db.empleados.countDocuments()
+5
+
+EJ6.¿Cuál es el nombre del empleado más joven?
+
+empresa> db.empleados.findOne({edad: {$gte: 0}})
+{
+  _id: ObjectId('664795b570031797e37383e1'),
+  nombre: 'Laura',
+  edad: 30,
+  cargo: 'Recursos Humanos'
+}
+
+EJ7.¿Cuántos clientes están en la industria de la salud? 
+
+empresa> db.clientes.find({industria: "salud"})
+[
+  {
+    _id: ObjectId('664796c770031797e37383e7'),
+    nombre: 'Izan',
+    industria: 'salud'
+  }
+]
+
+empresa> db.clientes.countDocuments({industria: "salud"})
+1
+
+EJ8.¿Cuál es el nombre del cliente del proyecto Y? 
+
+empresa> db.proyecto.find({ nombre: "Y" }, { _id: 0, cliente: 1})
+[ { cliente: '6647976570031797e37383eb' } ]
+
+EJ9.¿Cuál es el cargo de Laura? 
+
+empresa> db.empleados.find({nombre: "Laura"}, {_id: 0, cargo: 1})
+[ { cargo: 'Recursos Humanos' } ]
+
+EJ10.¿Cuántos proyectos tiene el cliente Empresa A? 
+
+empresa> db.proyecto.countDocuments({cliente: "6647976570031797e37383eb"})
+1
+
+EJ11.¿Cuál es el nombre del proyecto más reciente?
+
+empresa> db.proyecto.findOne()
+{
+  _id: ObjectId('6647992c70031797e37383ec'),
+  nombre: 'Y',
+  cliente: '6647976570031797e37383eb',
+  responsable: '6647964e70031797e37383e6'
+}
+
+EJ12.¿Cuál es la industria del cliente del proyecto X? 
+
+empresa> db.proyecto.find({nombre: "X"}, {_id: 0, cliente: 1})
+[ { cliente: '6647974170031797e37383e9' } ]
+
+EJ13.¿Quiénes son los empleados mayores de 30 años? 
+
+empresa> db.empleados.find({edad: {$gte: 30}})
+[
+  {
+    _id: ObjectId('664795b570031797e37383e1'),
+    nombre: 'Laura',
+    edad: 30,
+    cargo: 'Recursos Humanos'
+  },
+  {
+    _id: ObjectId('664795ff70031797e37383e3'),
+    nombre: 'Juan',
+    edad: 45,
+    cargo: 'Desarrolador Web'
+  },
+  {
+    _id: ObjectId('6647960370031797e37383e4'),
+    nombre: 'Marta',
+    edad: 65,
+    cargo: 'Desarrolador Web'
+  },
+  {
+    _id: ObjectId('6647960970031797e37383e5'),
+    nombre: 'Ricardo',
+    edad: 69,
+    cargo: 'Desarrolador'
+  },
+  {
+    _id: ObjectId('6647964e70031797e37383e6'),
+    nombre: 'Pedro',
+    edad: 57,
+    cargo: 'Desarrolador Web'
+  }
+]
+
+EJ14.¿Quiénes son los empleados entre 20 y 40 años? 
+
+empresa> db.empleados.find({$and: [{edad: {$gte: 20}}, {edad: {$lte: 40}}]})
+[
+  {
+    _id: ObjectId('664795b570031797e37383e1'),
+    nombre: 'Laura',
+    edad: 30,
+    cargo: 'Recursos Humanos'
+  }
+]
+
+EJ15.¿Cuál es el proyecto en el que trabaja Pedro? 
+
+empresa> db.proyecto.find({responsable: "6647964e70031797e37383e6"}, {_id: 0, nombre: 1})
+[ { nombre: 'Y' } ]
+
+EJ16.¿Cuál es el nombre del cliente del proyecto más antiguo? 
+
+empresa> db.proyecto.findOne({}, {_id: 0, cliente: 1})
+{ cliente: '6647976570031797e37383eb' }
+
+EJ17.¿Cuál es el cargo del responsable del proyecto W? 
+
+empresa> db.empleados.find({nombre: "Ricardo"}, {_id: 0, cargo: 1})
+[ { cargo: 'Desarrolador' } ]
+
+EJ18.¿Cuántos clientes tienen al menos un proyecto? 
+
+
+
+EJ19.Renombrar el campo " industria" de la colección "clientes" por "sector" 
+
+
+
+EJ20.Elimina al empleado con mayor edad 
+
+empresa> db.empleados.drop({edad: {$lte: 200}})
+true

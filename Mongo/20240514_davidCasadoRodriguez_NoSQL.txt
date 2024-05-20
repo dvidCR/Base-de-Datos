@@ -1,0 +1,458 @@
+EJ1. Crear una base de datos llamada "colegio"
+
+mongo> use colegio2024
+switched to db colegio2024
+
+EJ2. Crear dos colecciones en la base de datos: "alumnos" y "ciclo"
+
+colegio2024> db.createCollection("alumnos")
+{ ok: 1 }
+
+colegio2024> db.createCollection("ciclo")
+{ ok: 1 }
+
+colegio2024> show collections
+alumnos
+ciclo
+
+EJ3. La colección "alumnos" tendrá los campos: codAlumno, nombre, telefono y ciclos 
+(una lista de los códigos de ciclo que ha realizado). Los códigos de alumno serán: 1000, 2000, 3000, ...)
+
+colegio2024> db.alumnos.insert({codAlumno: 1000, nombre: "Mario", telefono: "+34 698789512", ciclos: []})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('664369a77cb092b954e929e7') }
+}
+
+colegio2024> db.alumnos.insert({ codAlumno: 2000, nombre: "Dario", telefono: "+34 666666666", ciclos: [] })
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('664369ed7cb092b954e929e8') }
+}
+
+colegio2024> db.alumnos.insert({ codAlumno: 3000, nombre: "Daniel", telefono: "+34 666666699", ciclos: [] })
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('66436a177cb092b954e929e9') }
+}
+
+colegio2024> db.alumnos.find()
+[
+  {
+    _id: ObjectId('664369a77cb092b954e929e7'),
+    codAlumno: 1000,
+    nombre: 'Mario',
+    telefono: '+34 698789512',
+    ciclos: []
+  },
+  {
+    _id: ObjectId('664369ed7cb092b954e929e8'),
+    codAlumno: 2000,
+    nombre: 'Dario',
+    telefono: '+34 666666666',
+    ciclos: []
+  },
+  {
+    _id: ObjectId('66436a177cb092b954e929e9'),
+    codAlumno: 3000,
+    nombre: 'Daniel',
+    telefono: '+34 666666699',
+    ciclos: []
+  }
+]
+
+EJ4. La colección "ciclo" tendrá los campos: codCiclo, nombreCiclo, familia. Los códigos de los ciclos serán: 100, 200, 300, ...
+
+colegio2024> db.ciclo.insert({codCiclo: 100, nombreCiclo: "Tercero ESO", familia: "Educacion Secundaria Obligatoria"})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('66436b507cb092b954e929ea') }
+}
+
+colegio2024> db.ciclo.insert({codCiclo: 200, nombreCiclo: "Cuarto ESO", familia: "Educacion Secundaria Obligatoria"})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('66436bab7cb092b954e929eb') }
+}
+
+colegio2024> db.ciclo.insert({ codCiclo: 300, nombreCiclo: "Segundo ESO", familia: "Educacion Secundaria Obligatoria" })
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('66436bb77cb092b954e929ec') }
+}
+
+colegio2024> db.ciclo.find()
+[
+  {
+    _id: ObjectId('66436b507cb092b954e929ea'),
+    codCiclo: 100,
+    nombreCiclo: 'Tercero ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bab7cb092b954e929eb'),
+    codCiclo: 200,
+    nombreCiclo: 'Cuarto ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bb77cb092b954e929ec'),
+    codCiclo: 300,
+    nombreCiclo: 'Segundo ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  }
+]
+
+EJ5. Insertar 5 alumnos y tres ciclos
+
+Los dos alumnos restantes
+
+colegio2024> db.alumnos.insert({codAlumno: 4000, nombre: "Angel", telefono: "+34 666666699", ciclos: ["66436bb77cb092b954e929ec", "66436b507cb092b954e929ea", "66436bab7cb092b954e929eb"]})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('66436c687cb092b954e929ed') }
+}
+
+colegio2024> db.alumnos.insert({ codAlumno: 5000, nombre: "David", telefono: "+34 6666855299", ciclos: ["66436bb77cb092b954e929ec", "66436b507cb092b954e929ea"]})
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('66436cb17cb092b954e929ee') }
+}
+
+colegio2024> db.alumnos.updateOne({codAlumno: 1000}, {$set: {ciclos: ['66436bb77cb092b954e929ec']}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+colegio2024> db.alumnos.updateOne({codAlumno: 2000}, {$set: {ciclos: ['66436bb77cb092b954e929ec']}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+colegio2024> db.alumnos.find()
+[
+  {
+    _id: ObjectId('664369a77cb092b954e929e7'),
+    codAlumno: 1000,
+    nombre: 'Mario',
+    telefono: '+34 698789512',
+    ciclos: [ '66436bb77cb092b954e929ec' ]
+  },
+  {
+    _id: ObjectId('664369ed7cb092b954e929e8'),
+    codAlumno: 2000,
+    nombre: 'Dario',
+    telefono: '+34 666666666',
+    ciclos: [ '66436bb77cb092b954e929ec' ]
+  },
+  {
+    _id: ObjectId('66436a177cb092b954e929e9'),
+    codAlumno: 3000,
+    nombre: 'Daniel',
+    telefono: '+34 666666699',
+    ciclos: [ '66436bb77cb092b954e929ec', '66436b507cb092b954e929ea' ]
+  },
+  {
+    _id: ObjectId('66436c687cb092b954e929ed'),
+    codAlumno: 4000,
+    nombre: 'Angel',
+    telefono: '+34 666666699',
+    ciclos: [
+      '66436bb77cb092b954e929ec',
+      '66436b507cb092b954e929ea',
+      '66436bab7cb092b954e929eb'
+    ]
+  },
+  {
+    _id: ObjectId('66436cb17cb092b954e929ee'),
+    codAlumno: 5000,
+    nombre: 'David',
+    telefono: '+34 6666855299',
+    ciclos: [ '66436bb77cb092b954e929ec', '66436b507cb092b954e929ea' ]
+  }
+]
+
+colegio2024> db.ciclo.find()
+[
+  {
+    _id: ObjectId('66436b507cb092b954e929ea'),
+    codCiclo: 100,
+    nombreCiclo: 'Tercero ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bab7cb092b954e929eb'),
+    codCiclo: 200,
+    nombreCiclo: 'Cuarto ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bb77cb092b954e929ec'),
+    codCiclo: 300,
+    nombreCiclo: 'Segundo ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  }
+]
+
+EJ6. Obtener la lista de ciclos
+
+colegio2024> db.ciclo.find()
+[
+  {
+    _id: ObjectId('66436b507cb092b954e929ea'),
+    codCiclo: 100,
+    nombreCiclo: 'Tercero ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bab7cb092b954e929eb'),
+    codCiclo: 200,
+    nombreCiclo: 'Cuarto ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bb77cb092b954e929ec'),
+    codCiclo: 300,
+    nombreCiclo: 'Segundo ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  }
+]
+
+EJ7. Obtener el nombre y el teléfono de todos los alumnos
+
+colegio2024> db.alumnos.find({}, { _id: 0, nombre: 1, telefono: 1 })
+[
+  { nombre: 'Mario', telefono: '+34 698789512' },
+  { nombre: 'Dario', telefono: '+34 666666666' },
+  { nombre: 'Daniel', telefono: '+34 666666699' },
+  { nombre: 'Angel', telefono: '+34 666666699' },
+  { nombre: 'David', telefono: '+34 6666855299' }
+]
+
+EJ8. Obtener el nombre de los alumnos que han realizado el ciclo con código 200
+
+colegio2024> db.alumnos.find({"ciclos": { $in: ["66436bab7cb092b954e929eb"]}}, { _id: 0, nombre: 1})
+[ { nombre: 'Angel' } ]
+
+EJ9. Actualizar la familia del ciclo con código 100
+
+colegio2024> db.ciclo.update({codCiclo: 100}, {$set: {familia: "ESO"}})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+colegio2024> db.ciclo.find()
+[
+  {
+    _id: ObjectId('66436b507cb092b954e929ea'),
+    codCiclo: 100,
+    nombreCiclo: 'Tercero ESO',
+    familia: 'ESO'
+  },
+  {
+    _id: ObjectId('66436bab7cb092b954e929eb'),
+    codCiclo: 200,
+    nombreCiclo: 'Cuarto ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bb77cb092b954e929ec'),
+    codCiclo: 300,
+    nombreCiclo: 'Segundo ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  }
+]
+
+EJ10. Obtener los ciclos que tengan un código más pequeño que 300
+
+colegio2024> db.ciclo.find({codCiclo: {$lte: 300}})
+[
+  {
+    _id: ObjectId('66436b507cb092b954e929ea'),
+    codCiclo: 100,
+    nombreCiclo: 'Tercero ESO',
+    familia: 'ESO'
+  },
+  {
+    _id: ObjectId('66436bab7cb092b954e929eb'),
+    codCiclo: 200,
+    nombreCiclo: 'Cuarto ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bb77cb092b954e929ec'),
+    codCiclo: 300,
+    nombreCiclo: 'Segundo ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  }
+]
+
+EJ11. Eliminad un alumno
+
+colegio2024> db.alumnos.deleteOne({nombre: "Angel"})
+{ acknowledged: true, deletedCount: 1 }
+
+colegio2024> db.alumnos.find()
+[
+  {
+    _id: ObjectId('664369a77cb092b954e929e7'),
+    codAlumno: 1000,
+    nombre: 'Mario',
+    telefono: '+34 698789512',
+    ciclos: [ '66436bb77cb092b954e929ec' ]
+  },
+  {
+    _id: ObjectId('664369ed7cb092b954e929e8'),
+    codAlumno: 2000,
+    nombre: 'Dario',
+    telefono: '+34 666666666',
+    ciclos: [ '66436bb77cb092b954e929ec' ]
+  },
+  {
+    _id: ObjectId('66436a177cb092b954e929e9'),
+    codAlumno: 3000,
+    nombre: 'Daniel',
+    telefono: '+34 666666699',
+    ciclos: [ '66436bb77cb092b954e929ec', '66436b507cb092b954e929ea' ]
+  },
+  {
+    _id: ObjectId('66436cb17cb092b954e929ee'),
+    codAlumno: 5000,
+    nombre: 'David',
+    telefono: '+34 6666855299',
+    ciclos: [ '66436bb77cb092b954e929ec', '66436b507cb092b954e929ea' ]
+  }
+]
+
+EJ12. Obtener el número de ciclos de la familia Informática
+
+colegio2024> db.ciclo.update({codCiclo: 100}, {$set: {familia: "Informatica"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+colegio2024> db.ciclo.find({familia: "Informatica"})
+[
+  {
+    _id: ObjectId('66436b507cb092b954e929ea'),
+    codCiclo: 100,
+    nombreCiclo: 'Tercero ESO',
+    familia: 'Informatica'
+  }
+]
+
+EJ13. Obtener el nombre de los alumnos que tengan un código mayor que 2000 pero menor que 5000
+
+colegio2024> db.alumnos.find({$and: [{codAlumno: {$gte: 2000}}, {codAlumno: {$lte: 5000}}]})
+[
+  {
+    _id: ObjectId('664369ed7cb092b954e929e8'),
+    codAlumno: 2000,
+    nombre: 'Dario',
+    telefono: '+34 666666666',
+    ciclos: [ '66436bb77cb092b954e929ec' ]
+  },
+  {
+    _id: ObjectId('66436a177cb092b954e929e9'),
+    codAlumno: 3000,
+    nombre: 'Daniel',
+    telefono: '+34 666666699',
+    ciclos: [ '66436bb77cb092b954e929ec', '66436b507cb092b954e929ea' ]
+  },
+  {
+    _id: ObjectId('66436cb17cb092b954e929ee'),
+    codAlumno: 5000,
+    nombre: 'David',
+    telefono: '+34 6666855299',
+    ciclos: [ '66436bb77cb092b954e929ec', '66436b507cb092b954e929ea' ]
+  }
+]
+
+EJ14. Renombrar el campo "familia" de la colección "ciclo" por "tipo"
+
+colegio2024> db.ciclo.update({}, { $rename: { "familia": "tipo" } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+colegio2024> db.ciclo.find()
+[
+  {
+    _id: ObjectId('66436b507cb092b954e929ea'),
+    codCiclo: 100,
+    nombreCiclo: 'Tercero ESO',
+    tipo: 'Informatica'
+  },
+  {
+    _id: ObjectId('66436bab7cb092b954e929eb'),
+    codCiclo: 200,
+    nombreCiclo: 'Cuarto ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bb77cb092b954e929ec'),
+    codCiclo: 300,
+    nombreCiclo: 'Segundo ESO',
+    familia: 'Educacion Secundaria Obligatoria'
+  }
+]
+
+colegio2024> db.ciclo.updateMany({}, { $rename: { "familia": "tipo" } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+colegio2024> db.ciclo.find()
+[
+  {
+    _id: ObjectId('66436b507cb092b954e929ea'),
+    codCiclo: 100,
+    nombreCiclo: 'Tercero ESO',
+    tipo: 'Informatica'
+  },
+  {
+    _id: ObjectId('66436bab7cb092b954e929eb'),
+    codCiclo: 200,
+    nombreCiclo: 'Cuarto ESO',
+    tipo: 'Educacion Secundaria Obligatoria'
+  },
+  {
+    _id: ObjectId('66436bb77cb092b954e929ec'),
+    codCiclo: 300,
+    nombreCiclo: 'Segundo ESO',
+    tipo: 'Educacion Secundaria Obligatoria'
+  }
+]
+
+EJ15. Eliminar la colección "ciclo"
+
+colegio2024> db.ciclo.drop()
+true
+
+colegio2024> show collections
+alumnos

@@ -1,0 +1,542 @@
+EJ. Realizar, al menos, 4 colcultas de datos específicos
+
+Zoologico> db.Animales.find({especie: 'Zorro Rojo'})
+[
+  {
+    _id: ObjectId('663a37fc30183354418d4b8b'),
+    nombre: 'Zorro2',
+    especie: 'Zorro Rojo',
+    nombre_cientifico: 'Vulpes',
+    edad: 6,
+    sexo: 'Hembra',
+    'habitat: ': '663a376f30183354418d4b8a'
+  },
+  {
+    _id: ObjectId('663a382430183354418d4b8c'),
+    nombre: 'Zorro1',
+    especie: 'Zorro Rojo',
+    nombre_cientifico: 'Vulpes',
+    edad: 10,
+    sexo: 'Macho',
+    'habitat: ': '663a376f30183354418d4b8a'
+  }
+]
+
+Zoologico> db.Animales.find({especie: "Leon Africano"})
+[
+  {
+    _id: ObjectId('663a3011e5a588f10367bc8d'),
+    nombre: 'Leon1',
+    especie: 'Leon Africano',
+    nombre_cientifico: 'Panthera leo leo',
+    edad: 7,
+    sexo: 'Macho',
+    habitat: '663a3154e5a588f10367bc94'
+  },
+  {
+    _id: ObjectId('663a3067e5a588f10367bc8e'),
+    nombre: 'Leon2',
+    especie: 'Leon Africano',
+    nombre_cientifico: 'Panthera leo leo',
+    edad: 10,
+    sexo: 'Hembra',
+    habitat: '663a3154e5a588f10367bc94'
+  }
+]
+
+Zoologico> db.Animales.find({especie: "Delfin Oceanico"})
+[
+  {
+    _id: ObjectId('663a30a9e5a588f10367bc90'),
+    nombre: 'Delfin1',
+    especie: 'Delfin Oceanico',
+    nombre_cientifico: 'Delphinidae',
+    edad: 4,
+    sexo: 'Macho',
+    habitat: '663a323ce5a588f10367bc96'
+  },
+  {
+    _id: ObjectId('663a311ee5a588f10367bc92'),
+    nombre: 'Delfin2',
+    especie: 'Delfin Oceanico',
+    nombre_cientifico: 'Delphinidae',
+    edad: 3,
+    sexo: 'Hembra',
+    habitat: '663a323ce5a588f10367bc96'
+  }
+]
+
+Zoologico> db.Animales.find({especie: "Gorila del río Cross"})
+[
+  {
+    _id: ObjectId('663a2e67e5a588f10367bc8a'),
+    nombre: 'Gorila1',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 20,
+    sexo: 'Macho',
+    'habitat: ': '663a322be5a588f10367bc95'
+  },
+  {
+    _id: ObjectId('663a2fcde5a588f10367bc8c'),
+    nombre: 'Gorila2',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 25,
+    sexo: 'Hembra',
+    habitat: '663a322be5a588f10367bc95'
+  }
+]
+
+EJ. Realizar, al menos, 3 colcultas de datos comprendidos en un rango de valores
+
+Zoologico> db.Animales.find({$and: [{"edad": {$gte: 10}}, {"edad": {$lte: 30}}]})
+[
+  {
+    _id: ObjectId('663a2e67e5a588f10367bc8a'),
+    nombre: 'Gorila1',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 20,
+    sexo: 'Macho',
+    'habitat: ': '663a322be5a588f10367bc95'
+  },
+  {
+    _id: ObjectId('663a2fcde5a588f10367bc8c'),
+    nombre: 'Gorila2',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 25,
+    sexo: 'Hembra',
+    habitat: '663a322be5a588f10367bc95'
+  },
+  {
+    _id: ObjectId('663a3067e5a588f10367bc8e'),
+    nombre: 'Leon2',
+    especie: 'Leon Africano',
+    nombre_cientifico: 'Panthera leo leo',
+    edad: 10,
+    sexo: 'Hembra',
+    habitat: '663a3154e5a588f10367bc94'
+  },
+  {
+    _id: ObjectId('663a382430183354418d4b8c'),
+    nombre: 'Zorro1',
+    especie: 'Zorro Rojo',
+    nombre_cientifico: 'Vulpes',
+    edad: 10,
+    sexo: 'Macho',
+    'habitat: ': '663a376f30183354418d4b8a'
+  }
+]
+
+Zoologico> db.Animales.find({$and: [{"edad": {$gte: 1}}, {"edad": {$lte: 10}}]})
+[
+  {
+    _id: ObjectId('663a3011e5a588f10367bc8d'),
+    nombre: 'Leon1',
+    especie: 'Leon Africano',
+    nombre_cientifico: 'Panthera leo leo',
+    edad: 7,
+    sexo: 'Macho',
+    habitat: '663a3154e5a588f10367bc94'
+  },
+  {
+    _id: ObjectId('663a3067e5a588f10367bc8e'),
+    nombre: 'Leon2',
+    especie: 'Leon Africano',
+    nombre_cientifico: 'Panthera leo leo',
+    edad: 10,
+    sexo: 'Hembra',
+    habitat: '663a3154e5a588f10367bc94'
+  },
+  {
+    _id: ObjectId('663a30a9e5a588f10367bc90'),
+    nombre: 'Delfin1',
+    especie: 'Delfin Oceanico',
+    nombre_cientifico: 'Delphinidae',
+    edad: 4,
+    sexo: 'Macho',
+    habitat: '663a323ce5a588f10367bc96'
+  },
+  {
+    _id: ObjectId('663a311ee5a588f10367bc92'),
+    nombre: 'Delfin2',
+    especie: 'Delfin Oceanico',
+    nombre_cientifico: 'Delphinidae',
+    edad: 3,
+    sexo: 'Hembra',
+    habitat: '663a323ce5a588f10367bc96'
+  },
+  {
+    _id: ObjectId('663a37fc30183354418d4b8b'),
+    nombre: 'Zorro2',
+    especie: 'Zorro Rojo',
+    nombre_cientifico: 'Vulpes',
+    edad: 6,
+    sexo: 'Hembra',
+    'habitat: ': '663a376f30183354418d4b8a'
+  },
+  {
+    _id: ObjectId('663a382430183354418d4b8c'),
+    nombre: 'Zorro1',
+    especie: 'Zorro Rojo',
+    nombre_cientifico: 'Vulpes',
+    edad: 10,
+    sexo: 'Macho',
+    'habitat: ': '663a376f30183354418d4b8a'
+  }
+]
+
+Zoologico> db.Animales.find({$and: [{"edad": {$gte: 5}}, {"edad": {$lte: 6}}]})
+[
+  {
+    _id: ObjectId('663a37fc30183354418d4b8b'),
+    nombre: 'Zorro2',
+    especie: 'Zorro Rojo',
+    nombre_cientifico: 'Vulpes',
+    edad: 6,
+    sexo: 'Hembra',
+    'habitat: ': '663a376f30183354418d4b8a'
+  }
+]
+
+EJ. Realizar, al menos, 3 colcultas de datos en una posición
+
+Zoologico> db.Habitat.find().skip(2).limit(1)
+[
+  {
+    _id: ObjectId('663a323ce5a588f10367bc96'),
+    zona: 'Acuatica',
+    habitat: 'Piscina de Delfines',
+    capacidad_max: 3
+  }
+]
+
+Zoologico> db.Habitat.find().skip(1).limit(1)
+[
+  {
+    _id: ObjectId('663a322be5a588f10367bc95'),
+    zona: 'Africana',
+    habitat: 'Habitat del Gorila',
+    capacidad_max: 6
+  }
+]
+
+Zoologico> db.Habitat.find().skip(0).limit(1)
+[
+  {
+    _id: ObjectId('663a3154e5a588f10367bc94'),
+    zona: 'Africana',
+    habitat: 'Habitat del Leon',
+    capacidad_max: 6
+  }
+]
+
+EJ. Realizar, al menos, 3 colcultas de datos para obtener una lista
+
+Zoologico> db.Habitat.find({ zona: "Africana" })
+[
+  {
+    _id: ObjectId('663a3154e5a588f10367bc94'),
+    zona: 'Africana',
+    habitat: 'Habitat del Leon',
+    capacidad_max: 6
+  },
+  {
+    _id: ObjectId('663a322be5a588f10367bc95'),
+    zona: 'Africana',
+    habitat: 'Habitat del Gorila',
+    capacidad_max: 6
+  }
+]
+
+Zoologico> db.Habitat.find({ capacidad_max: { $gte: 6 } })
+[
+  {
+    _id: ObjectId('663a3154e5a588f10367bc94'),
+    zona: 'Africana',
+    habitat: 'Habitat del Leon',
+    capacidad_max: 6
+  },
+  {
+    _id: ObjectId('663a322be5a588f10367bc95'),
+    zona: 'Africana',
+    habitat: 'Habitat del Gorila',
+    capacidad_max: 6
+  },
+  {
+    _id: ObjectId('663a376f30183354418d4b8a'),
+    zona: 'Nordica',
+    habitat: 'Habitat del Zorro',
+    capacidad_max: 10
+  }
+]
+
+Zoologico> db.Habitat.find().sort({ capacidad_max: -1 })
+[
+  {
+    _id: ObjectId('663a376f30183354418d4b8a'),
+    zona: 'Nordica',
+    habitat: 'Habitat del Zorro',
+    capacidad_max: 10
+  },
+  {
+    _id: ObjectId('663a3154e5a588f10367bc94'),
+    zona: 'Africana',
+    habitat: 'Habitat del Leon',
+    capacidad_max: 6
+  },
+  {
+    _id: ObjectId('663a322be5a588f10367bc95'),
+    zona: 'Africana',
+    habitat: 'Habitat del Gorila',
+    capacidad_max: 6
+  },
+  {
+    _id: ObjectId('663a323ce5a588f10367bc96'),
+    zona: 'Acuatica',
+    habitat: 'Piscina de Delfines',
+    capacidad_max: 3
+  }
+]
+
+EJ. Realizar, al menos, 4 colcultas para obtener datos dado un valor posterior
+
+Zoologico> db.Animales.find({edad: { $gte: 20 } })
+[
+  {
+    _id: ObjectId('663a2e67e5a588f10367bc8a'),
+    nombre: 'Gorila1',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 20,
+    sexo: 'Macho',
+    'habitat: ': '663a322be5a588f10367bc95'
+  },
+  {
+    _id: ObjectId('663a2fcde5a588f10367bc8c'),
+    nombre: 'Gorila2',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 25,
+    sexo: 'Hembra',
+    habitat: '663a322be5a588f10367bc95'
+  }
+]
+
+Zoologico> db.Animales.find({edad: { $gte: 26 } })
+
+Zoologico> db.Animales.find({edad: { $gte: 10 } })
+[
+  {
+    _id: ObjectId('663a2e67e5a588f10367bc8a'),
+    nombre: 'Gorila1',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 20,
+    sexo: 'Macho',
+    'habitat: ': '663a322be5a588f10367bc95'
+  },
+  {
+    _id: ObjectId('663a2fcde5a588f10367bc8c'),
+    nombre: 'Gorila2',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 25,
+    sexo: 'Hembra',
+    habitat: '663a322be5a588f10367bc95'
+  },
+  {
+    _id: ObjectId('663a3067e5a588f10367bc8e'),
+    nombre: 'Leon2',
+    especie: 'Leon Africano',
+    nombre_cientifico: 'Panthera leo leo',
+    edad: 10,
+    sexo: 'Hembra',
+    habitat: '663a3154e5a588f10367bc94'
+  },
+  {
+    _id: ObjectId('663a382430183354418d4b8c'),
+    nombre: 'Zorro1',
+    especie: 'Zorro Rojo',
+    nombre_cientifico: 'Vulpes',
+    edad: 10,
+    sexo: 'Macho',
+    'habitat: ': '663a376f30183354418d4b8a'
+  }
+]
+
+Zoologico> db.Animales.find({edad: { $gte: 17 } })
+[
+  {
+    _id: ObjectId('663a2e67e5a588f10367bc8a'),
+    nombre: 'Gorila1',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 20,
+    sexo: 'Macho',
+    'habitat: ': '663a322be5a588f10367bc95'
+  },
+  {
+    _id: ObjectId('663a2fcde5a588f10367bc8c'),
+    nombre: 'Gorila2',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 25,
+    sexo: 'Hembra',
+    habitat: '663a322be5a588f10367bc95'
+  }
+]
+
+Realizar, al menos, 4 colcultas para obtener datos con dos o más condiciones
+
+Zoologico> db.Animales.find({$and: [{edad: { $gte: 17 }}, {nombre: "Zorro2"}]})
+
+Zoologico> db.Animales.find({$and: [{edad: { $gte: 17 }}, {nombre: "Gorila1"}]})
+[
+  {
+    _id: ObjectId('663a2e67e5a588f10367bc8a'),
+    nombre: 'Gorila1',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 20,
+    sexo: 'Macho',
+    'habitat: ': '663a322be5a588f10367bc95'
+  }
+]
+
+Zoologico> db.Animales.find({$and: [{sexo: "Macho"}, {especie: "Delfin Oceanico"}]})
+[
+  {
+    _id: ObjectId('663a30a9e5a588f10367bc90'),
+    nombre: 'Delfin1',
+    especie: 'Delfin Oceanico',
+    nombre_cientifico: 'Delphinidae',
+    edad: 4,
+    sexo: 'Macho',
+    habitat: '663a323ce5a588f10367bc96'
+  }
+]
+
+Zoologico> db.Animales.find({$and: [{sexo: "Hembra"}, {especie: "Leon Africano"}]})
+[
+  {
+    _id: ObjectId('663a3067e5a588f10367bc8e'),
+    nombre: 'Leon2',
+    especie: 'Leon Africano',
+    nombre_cientifico: 'Panthera leo leo',
+    edad: 10,
+    sexo: 'Hembra',
+    habitat: '663a3154e5a588f10367bc94'
+  }
+]
+
+EJ. Realizar algunas de las operaciones anteriores ordenando el resultado por algún criterio
+
+Zoologico> db.Habitat.find().sort({ zona: 1, capacidad_max: -1 })
+[
+  {
+    _id: ObjectId('663a323ce5a588f10367bc96'),
+    zona: 'Acuatica',
+    habitat: 'Piscina de Delfines',
+    capacidad_max: 3
+  },
+  {
+    _id: ObjectId('663a3154e5a588f10367bc94'),
+    zona: 'Africana',
+    habitat: 'Habitat del Leon',
+    capacidad_max: 6
+  },
+  {
+    _id: ObjectId('663a322be5a588f10367bc95'),
+    zona: 'Africana',
+    habitat: 'Habitat del Gorila',
+    capacidad_max: 6
+  },
+  {
+    _id: ObjectId('663a376f30183354418d4b8a'),
+    zona: 'Nordica',
+    habitat: 'Habitat del Zorro',
+    capacidad_max: 10
+  }
+]
+
+EJ. Realizar, al menos, una 2 de actualización
+
+Zoologico> db.Animales.updateOne({nombre: "Zorro1"}, {$set: {edad: 3}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Zoologico> db.Animales.find({nombre: "Zorro1"})
+[
+  {
+    _id: ObjectId('663a382430183354418d4b8c'),
+    nombre: 'Zorro1',
+    especie: 'Zorro Rojo',
+    nombre_cientifico: 'Vulpes',
+    edad: 3,
+    sexo: 'Macho',
+    'habitat: ': '663a376f30183354418d4b8a'
+  }
+]
+
+Zoologico> db.Animales.updateOne({especie: 'Gorila del río Cross'}, {$set: {edad: 35}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Zoologico> db.Animales.find({especie: 'Gorila del río Cross'})
+[
+  {
+    _id: ObjectId('663a2e67e5a588f10367bc8a'),
+    nombre: 'Gorila1',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 35,
+    sexo: 'Macho',
+    'habitat: ': '663a322be5a588f10367bc95'
+  },
+  {
+    _id: ObjectId('663a2fcde5a588f10367bc8c'),
+    nombre: 'Gorila2',
+    especie: 'Gorila del río Cross',
+    nombre_cientifico: 'Gorilla gorilla diehli',
+    edad: 25,
+    sexo: 'Hembra',
+    habitat: '663a322be5a588f10367bc95'
+  }
+]
+
+Realizar, al menos, una 2 operaciones de borrado
+
+Zoologico> db.Habitat.deleteOne({habitat: "Habitat del Zorro"})
+{ acknowledged: true, deletedCount: 1 }
+Zoologico> db.Habitat.find()
+[
+  {
+    _id: ObjectId('663a3154e5a588f10367bc94'),
+    zona: 'Africana',
+    habitat: 'Habitat del Leon',
+    capacidad_max: 6
+  },
+  {
+    _id: ObjectId('663a322be5a588f10367bc95'),
+    zona: 'Africana',
+    habitat: 'Habitat del Gorila',
+    capacidad_max: 6
+  },
+  {
+    _id: ObjectId('663a323ce5a588f10367bc96'),
+    zona: 'Acuatica',
+    habitat: 'Piscina de Delfines',
+    capacidad_max: 3
+  }
+]
